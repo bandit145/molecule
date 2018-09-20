@@ -14,7 +14,6 @@
       vmware_guest:
         name: "{{ item.name }}"
         datacenter: "{{ molecule_vmware.datacenter }}"
-        cluster: "{{ molecule_vmware.cluster }}"
         folder: "{{ molecule_vmware.folder }}"
         state: absent
         force: true

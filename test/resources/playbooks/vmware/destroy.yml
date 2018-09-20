@@ -3,7 +3,7 @@
   hosts: localhost
   connection: local
   gather_facts: false
-  no_log: "{{ not (lookup('env', 'MOLECULE_DEBUG') | bool or molecule_yml.provisioner.log|default(false) | bool) }}"
+  no_log: false
   vars_files:
     - "~/.molecule_vmware.yml"
 
@@ -13,7 +13,6 @@
       vmware_guest:
         name: "{{ item.name }}"
         datacenter: "{{ molecule_vmware.datacenter }}"
-        cluster: "{{ molecule_vmware.cluster }}"
         folder: "{{ molecule_vmware.folder }}"
         state: absent
         force: true

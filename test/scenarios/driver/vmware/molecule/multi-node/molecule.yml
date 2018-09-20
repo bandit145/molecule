@@ -2,20 +2,36 @@
 dependency:
   name: galaxy
 driver:
-  name: azure
+  name: vmware
 lint:
   name: yamllint
   options:
     config-file: ../../../resources/.yamllint
 platforms:
-  - name: instance-1
-    groups:
-      - foo
-      - bar
-  - name: instance-2
-    groups:
-      - foo
-      - baz
+  - name: molecule-func-test-instance-1
+    template: rhel75_template_molecule
+    disk:
+      - size_kb: 57856000
+        type: thin
+        datastore: nz110_fp_hn07_vmfs001
+    networks:
+      - name: DPG-SDNI_VLAN-ID0027
+        device_type: vmxnet3
+    hardware:
+      num_cpus: 2
+      memory_mb: 2048
+  - name: molecule-func-test-instance-2
+    template: rhel75_template_molecule
+    disk:
+      - size_kb: 57856000
+        type: thin
+        datastore: nz110_fp_hn07_vmfs001
+    networks:
+      - name: DPG-SDNI_VLAN-ID0027
+        device_type: vmxnet3
+    hardware:
+      num_cpus: 2
+      memory_mb: 2048
 provisioner:
   name: ansible
   playbooks:
